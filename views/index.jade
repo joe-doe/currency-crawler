@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  div
+    table
+      tbody
+        each doc in content
+          tr
+            td= "date:"+ doc.date 
+            td= "buy:" + doc.buy 
+            td= "sell:" + doc.sell
