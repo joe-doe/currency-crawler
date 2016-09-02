@@ -1,0 +1,13 @@
+{
+    "localhost": {
+        "host": "localhost",
+        "port": 3000,
+        "path": "/store"
+    },
+    "production": {
+        "host": "currency-crawl.herokuapp.com",
+        "port": 80,
+        "path": "/store"
+    }
+
+}

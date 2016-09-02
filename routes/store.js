@@ -7,7 +7,7 @@ var site = 'http://www.piraeusbank.gr/el/Idiwtes/Epitokia-Deltia-Timon/Imerisio-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var db = req.db;
-  store(db);
+  store(db, res);
 });
 
 
@@ -21,7 +21,8 @@ function store(db){
           var sell = windowq.$(".PinakasSynallagmatos tr:nth-child(23) .forthcell_1").text();
 
           var collection = db.get('usd');
-          collection.insert({'date': new Date(), 'buy': buy, 'sell': sell});
+          collection.insert({'date': new Date(), 'buy': parseFloat(buy), 'sell': parseFloat(sell)});
+          res.json({'status': 'OK'});
         }
     });
 }

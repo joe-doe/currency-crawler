@@ -1,0 +1,5 @@
+{
+    "host": "currency-crawl.herokuapp.com",
+    "port": 80,
+    "path": "/store"
+}

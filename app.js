@@ -1,3 +1,4 @@
+var config = require('config');
 var http = require('http');
 var express = require('express');
 var path = require('path');
@@ -82,9 +83,9 @@ rule.hour = 12;
 var job = scheduler.scheduleJob(rule, function() {
 
   var options = {
-    host: 'localhost',
-    port: 3000,
-    path: '/store'
+    host: config.get('host'),
+    port: config.get('port'),
+    path: config.get('path')
   };
 
   http.get(options, function(res){
@@ -92,4 +93,5 @@ var job = scheduler.scheduleJob(rule, function() {
   });
 });
 
+console.log(config.get('host'));
 module.exports = app;
