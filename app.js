@@ -28,7 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/currency');
+var db_path = process.env.MONGO_URI || 'localhost:27017/currency';
+var db = monk(db_path);
 
 // make db available to every rout by adding it to req
 app.use(function(req,res,next){
