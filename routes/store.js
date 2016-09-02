@@ -20,8 +20,8 @@ function store(db){
           var buy = windowq.$(".PinakasSynallagmatos tr:nth-child(23) .secondcell_1").text();
           var sell = windowq.$(".PinakasSynallagmatos tr:nth-child(23) .forthcell_1").text();
 
-          var collection = db.get('usd_demo');
-          collection.insert({'date': new Date(), 'buy': buy, 'shell': sell});
+          var collection = db.get('usd');
+          collection.insert({'date': new Date(), 'buy': buy, 'sell': sell});
         }
     });
 }

@@ -2,13 +2,16 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-
   div
-    table
+    table.table.table-bordered.table-striped
+      thead
+        tr.head
+          th date
+          th buy
+          th sell 
       tbody
         each doc in content
           tr
-            td= "date:"+ doc.date 
-            td= "buy:" + doc.buy 
-            td= "sell:" + doc.sell
+            td= doc.date 
+            td= doc.buy 
+            td= doc.sell

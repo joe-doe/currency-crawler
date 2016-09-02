@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 var scheduler = require('node-schedule');
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 var store = require('./routes/store');
 
@@ -37,7 +37,7 @@ app.use(function(req,res,next){
 });
 
 // here come the routes
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 app.use('/store', store);
 
@@ -75,6 +75,7 @@ app.use(function(err, req, res, next) {
 
 // start scheduler
 var rule = new scheduler.RecurrenceRule();
+// rule.second = new scheduler.Range(0, 59, 10);
 rule.hour = 12;
 
 var job = scheduler.scheduleJob(rule, function() {

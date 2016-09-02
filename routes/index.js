@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   var collection = db.get('usd');
   
   collection.find({}, {}, function(e, docs){
-    res.render('index', { title: 'Test', content: docs });
+    res.render('index', { title: 'EUR / USD', content: docs });
   });
 
 });
