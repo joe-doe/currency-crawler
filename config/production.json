@@ -1,5 +1,6 @@
 {
     "host": "currency-crawl.herokuapp.com",
     "port": 80,
-    "path": "/store"
+    "path": "/store",
+    "collection_usd": "usd"
 }

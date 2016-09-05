@@ -32,9 +32,10 @@ var monk = require('monk');
 var db_path = process.env.MONGO_URI || 'localhost:27017/currency';
 var db = monk(db_path);
 
-// make db available to every rout by adding it to req
+// make db and config available to every route by adding them to req
 app.use(function(req,res,next){
     req.db = db;
+    req.config = config;
     next();
 });
 

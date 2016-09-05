@@ -20,7 +20,7 @@ function store(db, res){
           var buy = windowq.$(".PinakasSynallagmatos tr:nth-child(23) .secondcell_1").text();
           var sell = windowq.$(".PinakasSynallagmatos tr:nth-child(23) .forthcell_1").text();
 
-          var collection = db.get('usd');
+          var collection = db.get(req.config.get('collection_usd'));
           collection.insert({'date': new Date(), 'buy': parseFloat(buy), 'sell': parseFloat(sell)});
           res.json({'status': 'OK'});
         }
