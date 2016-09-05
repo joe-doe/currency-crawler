@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-function store(db){
+function store(db, res){
   jsdom.env({
     url: site,
     scripts: ["http://code.jquery.com/jquery.js"],
