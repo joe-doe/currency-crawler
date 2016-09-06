@@ -79,7 +79,7 @@ app.use(function(err, req, res, next) {
 // start scheduler
 var rule = new scheduler.RecurrenceRule();
 // rule.hour = new scheduler.Range(0, 23, 1);
-rule.minute = 40;
+rule.hour = 12;
 
 var job = scheduler.scheduleJob(rule, function() {
 
