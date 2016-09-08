@@ -80,6 +80,7 @@ app.use(function(err, req, res, next) {
 var rule = new scheduler.RecurrenceRule();
 // rule.hour = new scheduler.Range(0, 23, 1);
 rule.hour = 12;
+rule.minute = 0;
 
 var job = scheduler.scheduleJob(rule, function() {
 
