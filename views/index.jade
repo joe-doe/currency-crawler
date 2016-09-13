@@ -15,3 +15,8 @@ block content
             td= doc.date 
             td= doc.buy 
             td= doc.sell
+  canvas.chart(width='400', height='400')
+
+block javascripts
+  script(src='javascripts/chart.js/dist/Chart.min.js')
+  script(src='javascripts/line_chart.js')
