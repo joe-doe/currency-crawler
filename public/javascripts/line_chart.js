@@ -30,7 +30,7 @@ $(function(){
         ]
     };
 
-    http.get('https://currency-crawl.herokuapp.com/usd_data', function(res){
+    $.get('https://currency-crawl.herokuapp.com/usd_data', function(res, status){
         
         for (var i=0; i<res.length; i++) {
             data.labels.push(res[i].date);
