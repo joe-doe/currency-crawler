@@ -76,13 +76,13 @@ app.use(function(err, req, res, next) {
 });
 
 
-// start scheduler
-var rule = new scheduler.RecurrenceRule();
+// start store scheduler
+var store_rule = new scheduler.RecurrenceRule();
 // rule.hour = new scheduler.Range(0, 23, 1);
-rule.hour = 12;
-rule.minute = 0;
+store_rule.hour = 12;
+store_rule.minute = 0;
 
-var job = scheduler.scheduleJob(rule, function() {
+var job = scheduler.scheduleJob(store_rule, function() {
 
   var options = {
     host: config.get('host'),
@@ -91,9 +91,25 @@ var job = scheduler.scheduleJob(rule, function() {
   };
 
   http.get(options, function(res){
-    console.log('ok');
+    console.log('stored');
   });
 });
 
-console.log(config.get('host'));
+// start ping scheduler (heroku keep alive)
+var ping_rule = new scheduler.RecurrenceRule();
+ping_rule.minute = 10;
+
+var job = scheduler.scheduleJob(ping_rule, function() {
+
+  var options = {
+    host: config.get('host'),
+    port: config.get('port')
+  };
+
+  http.get(options, function(res){
+    console.log('ping');
+  });
+});
+
+console.log('running on host: ' + config.get('host'));
 module.exports = app;
