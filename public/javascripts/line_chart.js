@@ -1,9 +1,9 @@
-$(function(){
 
+$(function(){
     var ctx = $('.chart');
 
     var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: [],
         datasets: [
             {
                 label: "usd / euro",
@@ -24,27 +24,37 @@ $(function(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40],
+                data: [],
                 spanGaps: false,
             }
         ]
     };
 
-    var myLineChart = new Chart(ctx, {
-        type: 'line',
-        data: data,
-        options: {
-            title: {
-                display: true,
-                text: 'USD Chart'
-            },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
+    http.get('https://currency-crawl.herokuapp.com/usd_data', function(res){
+        
+        for (var i=0; i<res.length; i++) {
+            data.labels.push(res[i].date);
+            data.datasets[0].data.push(res[i].buy);
+        }
+
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                title: {
+                    display: true,
+                    text: 'USD Chart'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
                 }
-            }]
-        }
-        }
-    });
+            }
+        });
+
+   });
+
 });

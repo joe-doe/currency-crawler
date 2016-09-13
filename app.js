@@ -12,6 +12,7 @@ var scheduler = require('node-schedule');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var store = require('./routes/store');
+var usd_data = require('./routes/usd_data');
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use(function(req,res,next){
 app.use('/', index);
 app.use('/users', users);
 app.use('/store', store);
+app.use('/usd_data', usd_data);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
