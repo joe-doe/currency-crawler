@@ -40,6 +40,7 @@ $(function(){
         var myLineChart = new Chart(ctx, {
             type: 'line',
             data: data,
+            headers: {'Access-Control-Request-Headers': 'x-requested-with'},
             options: {
                 title: {
                     display: true,

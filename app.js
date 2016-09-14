@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var scheduler = require('node-schedule');
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var store = require('./routes/store');
