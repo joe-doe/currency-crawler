@@ -30,17 +30,16 @@ $(function(){
         ]
     };
 
-    $.get('https://currency-crawl.herokuapp.com/usd_data', function(res, status){
+    $.get(document.location.origin+'/usd_data', function(res, status){
         
         for (var i=0; i<res.length; i++) {
-            data.labels.push(res[i].date);
+            data.labels.push(res[i].date.substring(0,10));
             data.datasets[0].data.push(res[i].buy);
         }
 
         var myLineChart = new Chart(ctx, {
             type: 'line',
             data: data,
-            headers: {'Access-Control-Request-Headers': 'x-requested-with'},
             options: {
                 title: {
                     display: true,
