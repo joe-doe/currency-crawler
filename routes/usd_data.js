@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   var db = req.db;
   var collection = db.get(req.config.get('collection_usd'));
   
-  collection.find({}, {}, function(e, docs){
+  collection.find({}, {limit: 20}, function(e, docs){
     res.json(docs);
   });
 
