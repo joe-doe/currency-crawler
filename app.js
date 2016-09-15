@@ -77,13 +77,9 @@ app.use(function(err, req, res, next) {
 });
 
 
-// start store scheduler
-var store_rule = new scheduler.RecurrenceRule();
-// rule.hour = new scheduler.Range(0, 23, 1);
-store_rule.hour = 12;
-store_rule.minute = 0;
+var job = scheduler.scheduleJob('*/45 * * * *', function() {
 
-var job = scheduler.scheduleJob(store_rule, function() {
+  console.log('ping');
 
   var options = {
     host: config.get('host'),
