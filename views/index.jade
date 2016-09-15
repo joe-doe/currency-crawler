@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   div
-    table.table.table-bordered.table-striped
+    table.table.table-bordered.table-striped#data_table
       thead
         tr.head
           th date
@@ -18,5 +18,6 @@ block content
   canvas.chart(width='400', height='400')
 
 block javascripts
+  script(src='javascripts/data_table.js')
   script(src='javascripts/chart.js/dist/Chart.min.js')
   script(src='javascripts/line_chart.js')
