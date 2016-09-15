@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var scheduler = require('node-schedule');
+var ping = require('./routes/ping');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var store = require('./routes/store');
@@ -41,6 +42,7 @@ app.use(function(req,res,next){
 
 // here come the routes
 app.use('/', index);
+app.use('/ping', ping);
 app.use('/users', users);
 app.use('/store', store);
 app.use('/usd_data', usd_data);
@@ -76,15 +78,16 @@ app.use(function(err, req, res, next) {
   });
 });
 
+var rule = new scheduler.RecurrenceRule();
+rule.hour = 12;
+rule.minute = 0;
 
-var job = scheduler.scheduleJob('*/45 * * * *', function() {
-
-  console.log('ping');
+var job = scheduler.scheduleJob(rule, function() {
 
   var options = {
     host: config.get('host'),
     port: config.get('port'),
-    path: config.get('path')
+    path: config.get('store_path')
   };
 
   http.get(options, function(res){
@@ -93,14 +96,13 @@ var job = scheduler.scheduleJob('*/45 * * * *', function() {
 });
 
 // start ping scheduler (heroku keep alive)
-var ping_rule = new scheduler.RecurrenceRule();
-ping_rule.minute = 10;
-
-var job = scheduler.scheduleJob(ping_rule, function() {
+var job = scheduler.scheduleJob('*/45 * * * *', function() {
 
   var options = {
     host: config.get('host'),
-    port: config.get('port')
+    port: config.get('port'),
+    path: config.get('ping_path')
+
   };
 
   http.get(options, function(res){
